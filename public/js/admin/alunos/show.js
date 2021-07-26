@@ -1,0 +1,3 @@
+$(function(){
+    $( '.turma-hint' ).tooltip();
+});

@@ -1,0 +1,45 @@
+/* Título Campo nas View Show */
+.titulo_show{
+    width: 25%;
+    font-weight: bold;
+}
+
+/* Fix para Botões de Listar, Criar e Editar aparecerem em linha */
+.d-sm-flex {
+    display: inline !important;
+}
+
+.form-control-inline {
+    display: inline !important;
+}
+
+.delete-button{
+    background: white;
+    border: none;
+}
+
+.error{
+	font-weight: 0;
+	color: #999;
+    font-size:inherit !important;
+    line-height: unset !important;
+    width: 100% !important;
+}
+
+.setores-header{
+    display: none;
+}
+
+.avatar{
+    width: 200px;
+}
+
+.logo-login {
+    width: 50%; 
+    margin-left:25%; 
+    margin-bottom: 40px;
+}
+
+.select2 {
+    width:100%!important;
+}
