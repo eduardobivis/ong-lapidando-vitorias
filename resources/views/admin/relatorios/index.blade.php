@@ -6,11 +6,14 @@
 
 @section('conteudo')
 
+    <!-- Page Heading -->
+    <p class="mb-4">Escolha seu Relatório - Todos os campos são opcionais</p>
+
     <div class="card shadow mb-4">
         <div class="card-body">
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="{{ route('relatorios.inadimplentes') }}" style="color: #212529; text-decoration: none;">Alunos Inadimplentes</a>
+                <a href="{{ route('relatorios.situacao') }}" style="color: #212529; text-decoration: none;">Situação</a>
             </li>
             <li class="list-group-item">
                 <a href="{{ route('relatorios.presencas') }}" style="color: #212529; text-decoration: none;">Presenças</a>

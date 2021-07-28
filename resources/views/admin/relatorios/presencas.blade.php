@@ -78,20 +78,23 @@
                 </div>
             </form>
 
-            @if( !empty( $registros ) )
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="tabelaEmpresas" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>Data</th>
-                                <th>Horário</th>
-                                <th>Justificativa</th>
-                                <th>Turma (da Presença) <i class="fas fa-question turma-hint" title="No momento do Registro"></i></th>
-                                <th>Criado Por</th>
-                            </tr>
-                        </thead>
+            @if( $registros )
+                Total de Resultados: {{ count( $registros ) }}
+            @endif
+            <div class="table-responsive">
+                <table class="table table-bordered" id="tabelaEmpresas" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Justificativa</th>
+                            <th>Turma (da Presença) <i class="fas fa-question turma-hint" title="No momento do Registro"></i></th>
+                            <th>Criado Por</th>
+                        </tr>
+                    </thead>
+                    @if( $registros )
                         <tbody>
                             @foreach($registros as $registro)
 
@@ -122,12 +125,14 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
-                    {{ $registros->links() }}
-                </div>
+                    @endif
+                </table>
+            @if( $registros )
+                {{ $registros->links() }}
             @endif
         </div>
     </div>
+</div>
     
 @endsection
 

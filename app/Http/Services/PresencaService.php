@@ -2,10 +2,12 @@
 
     namespace App\Http\Services;
 
-    use App\Http\Services\EntidadeService;
-    use App\Http\Services\TurmaService;
-    
+    use Helper;
+
     use App\Presenca;
+
+    use App\Http\Services\AbstractEntidadeService;
+    use App\Http\Services\PagamentoService;
 
     class PresencaService extends AbstractEntidadeService {
 
@@ -20,7 +22,7 @@
             if( !empty( $this->validarDados( $dados ) ) ) {
                 return [
                     'status' => false,
-                    'registro' => $presenca,
+                    'registro' => null,
                     'errors' => $this->validarDados( $dados ) 
                 ];
             }
@@ -50,6 +52,7 @@
             $presenca = Presenca::find( $id );
             $presenca->fill( $dados )->save();
             return [
+                'status' => true,
                 'registro' => $presenca,
                 'errors' => $this->validarDados( $dados, $id ) 
             ];
@@ -62,7 +65,7 @@
             if( !$this->turmaService->getTurma( $dados['horario'] ) ) {
                 $errors[] = [
                     "turma_inexistente_error" => 
-                        "Horário não corresponde a nenhuma turma!"
+                        "Horário não corresponde a nenhuma Turma!"
                 ];
             }
 
@@ -72,7 +75,7 @@
         public function tratarDados( Array $dados ) : Array {
 
             //Tratamento
-            $dados['data'] = date_create_from_format('d/m/Y', $dados['data'])->format('Y-m-d');
+            $dados['data'] = Helper::formataDataIn($dados['data']);
 
             //Turma ID
             

@@ -25,7 +25,8 @@ class AlunosCreateRequest extends FormRequest
             'complemento' => 'max:200',
             'bairro' => 'required|max:100',
             'cidade_id' => 'required',
-            'codigo_acesso' => 'required|max:200',
+            'codigo_acesso' => 'max:200',
+            'dia_pagamento' => 'required',
         ];
     }
 
@@ -55,8 +56,8 @@ class AlunosCreateRequest extends FormRequest
             'bairro.required' => 'O campo Bairro é obrigatório',
             'bairro.max' => 'O campo Bairro não pode conter mais de 100 caracteres',
             'cidade_id.required' => 'O campo Cidade é obrigatório',
-            'codigo_acesso.required' => 'O campo Código de Acesso é obrigatório',
             'codigo_acesso.max' => 'O campo Código de Acesso não pode conter mais de 200 caracteres',
+            'dia_pagamento.required' => 'O campo Dia de Pagamento é obrigatório',
         ];
     }
 }

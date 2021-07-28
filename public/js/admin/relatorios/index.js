@@ -5,7 +5,7 @@ $(function(){
     $(".data_inicio, .data_final").mask('00/00/0000')
 
     //Multi Select
-    $( ".turmas" ).select2();
+    $( ".turmas, .situacoes" ).select2();
     
     //Passar Configuração para um Arquivo Global !
     $.fn.datepicker.dates['pt-BR'] = {

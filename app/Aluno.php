@@ -9,6 +9,7 @@ use Helper;
 use App\AlunoTurma;
 use App\Entidade;
 use App\Cidade;
+use App\Pagamento;
 use App\Presenca;
 use App\Situacao;
 use App\Turma;
@@ -34,6 +35,8 @@ class Aluno extends Entidade
         'cidade_id',
         'estado',
         'codigo_acesso',
+        'dia_pagamento',
+        'data_matricula',
         'createdby_id',
         'updatedby_id'
     ];
@@ -65,16 +68,7 @@ class Aluno extends Entidade
         return $this->hasMany(Presenca::class)->whereYear('data', date('Y'));
     }
 
-    //Atributos Formatados
-    public function getCpfFormatadoAttribute () {
-        return Helper::formataCPF($this->cpf);
-    }
-
-    public function getCelularFormatadoAttribute () {
-        return Helper::formataCelular($this->celular);        
-    }
-
-    public function getTelefoneFormatadoAttribute () {
-        return Helper::formataTelefone($this->telefone);  
+    public function pagamentos() {
+        return $this->hasMany(Pagamento::class);
     }
 }

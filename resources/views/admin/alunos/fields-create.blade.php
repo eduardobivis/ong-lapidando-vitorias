@@ -97,6 +97,16 @@
     <div class="col">
         {!! Form::text('codigo_acesso', null, ['placeholder'=>'Código de Acesso', 'class' => 'form-control']) !!}
     </div>
+    <div class="col-md-3">
+        {!! Form::select('dia_pagamento', $diaPagamentoOptions, null, ['class' => 'form-control', 'placeholder' => 'Dia do Pagamento']) !!}        
+    </div>
+    <div class="col">
+        {!! Form::text('data_matricula', null, ['placeholder'=>'Data da Matrícula', 'class' => 'form-control col-md-11 data', 'autocomplete' => 'off', 'style' => 'display: inline-block;']) !!}
+        <td class="titulo_show">  
+            <i class="fas fa-question turma-hint" 
+                title="Usada no cálculo de Inadimplentes!"></i>
+        </td>
+    </div>
 </div>
 
 <div class="form-group">

@@ -4,8 +4,10 @@
 
     use Illuminate\Support\Facades\DB;
     use Helper;
-    use App\Http\Services\EntidadeService;
+
     use App\Turma;
+
+    use App\Http\Services\AbstractEntidadeService;
 
     class TurmaService extends AbstractEntidadeService {
 

@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Aluno;
 use App\AlunoTurma;
 use App\Cidade;
+use App\Pagamento;
 use App\Presenca;
 use App\Situacao;
 use App\Turma;
@@ -23,9 +24,8 @@ class DatabaseSeeder extends Seeder {
         //Situacao
         Situacao::create([ 'nome' => 'Adimplente' ]);
         Situacao::create([ 'nome' => 'Inadimplente' ]);
-        Situacao::create([ 'nome' => 'Regular' ]);
-        Situacao::create([ 'nome' => 'Irregular' ]);
-        Situacao::create([ 'nome' => 'Desativado' ]);
+        Situacao::create([ 'nome' => 'Ausente' ]);
+        Situacao::create([ 'nome' => 'Ex-Aluno' ]);
 
         //Situacao
         Turma::create([ 
@@ -91,6 +91,8 @@ class DatabaseSeeder extends Seeder {
             'complemento' => 'Bloco 2 Ap 203',
             'estado' => 'PR',
             'codigo_acesso' => '12345',
+            'dia_pagamento' => '10',
+            'data_matricula' => '2021-01-10',
             'cidade_id' => '14',
             'situacao_id' => '1',
             'createdby_id' => '1',
@@ -103,6 +105,14 @@ class DatabaseSeeder extends Seeder {
             'horario' => '10:00',
             'turma_id' => '1',
             'justificativa' => 'ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
+            'createdby_id' => '1',
+            'updatedby_id' => '1'
+        ]);
+
+        Pagamento::create([
+            'aluno_id' => '1',
+            'data' => '2021-10-10',
+            'observacao' => 'ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
             'createdby_id' => '1',
             'updatedby_id' => '1'
         ]);

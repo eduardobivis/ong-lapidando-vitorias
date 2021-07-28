@@ -15,15 +15,10 @@ use App\Entidade;
 
 class Turma extends Entidade
 {
-    protected $fillable = [ 'nome', 'horario_inicio', 'horario_termino', 'updatedby_id' ];
-
-    public function getHorarioInicioAttribute() {
-        return date_create_from_format('H:i:s', $this->attributes['horario_inicio'])
-            ->format('H:i');
-    }
-
-    public function getHorarioTerminoAttribute() {
-        return date_create_from_format('H:i:s', $this->attributes['horario_termino'])
-        ->format('H:i');
-    }
+    protected $fillable = [ 
+        'nome', 
+        'horario_inicio', 
+        'horario_termino', 
+        'updatedby_id' 
+    ];
 }

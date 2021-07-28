@@ -16,11 +16,11 @@
                 <tbody>
                     <tr>
                         <td class="titulo_show"> Data</td>
-                        <td>{{ $registro->dataFormatado }}</td>
+                        <td>{{ Helper::formataData( $registro->data ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show"> Horário </td>
-                        <td>{{ $registro->horarioFormatado }}</td>
+                        <td>{{ Helper::formataHorario( $registro->horario ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show"> Turma </td>

@@ -30,6 +30,8 @@ class CreateAlunosTable extends Migration
             $table->unsignedInteger('cidade_id');
             $table->char('estado', 2);
             $table->string('codigo_acesso', 200);
+            $table->char('dia_pagamento', 2);
+            $table->date('data_matricula');
             $table->unsignedInteger('createdby_id');
             $table->unsignedInteger('updatedby_id');
             $table->timestamps();

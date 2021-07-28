@@ -2,12 +2,13 @@
 
     namespace App\Http\Services;
 
-    use App\Http\Services\EntidadeService;
     use DB;
     use Helper;
 
     use App\Aluno;
     use App\AlunoTurma;
+
+    use App\Http\Services\AbstractEntidadeService;
 
     class AlunoService extends AbstractEntidadeService {
      
@@ -100,11 +101,12 @@
             $dados['telefone'] = Helper::removeAll($dados['telefone'], [ "(", ")", "-", " " ]);
             $dados['celular'] = Helper::removeAll($dados['celular'], [ "(", ")", "-", " " ]);
             $dados['estado'] = 'PR';
+            $dados['data_matricula'] = Helper::formataDataIn($dados['data_matricula']);
 
             //Casting
             $dados['cidade_id'] = (int) $dados['cidade_id'];
             $dados['situacao_id'] = (int) $dados['situacao_id'];
 
             return $dados;
-        } 
+        }
     }

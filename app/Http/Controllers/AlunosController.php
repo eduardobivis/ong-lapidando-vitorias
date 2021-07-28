@@ -30,13 +30,23 @@ class AlunosController extends Controller {
         'registro e botava o nome do Aluno na listagem Alunos ¯\_(ツ)_/¯
     */
     public function index() {
-        return view('admin.alunos.index',  ['entidades' => Aluno::all()]);
+        return view(
+            'admin.alunos.index',  
+            [
+                'entidades' => Aluno::all(),
+                'helper' => Helper::class
+            ]
+        );
     }
 
     public function show(Aluno $aluno){
         return view(
             'admin.alunos.show', 
-            ['titulo' => $aluno->nome, 'registro' => $aluno]
+            [
+                'titulo' => $aluno->nome, 
+                'registro' => $aluno,
+                'helper' => Helper::class
+            ]
         );
     }
 
@@ -45,6 +55,7 @@ class AlunosController extends Controller {
             'admin.alunos.create',
             [
                 'cidadeOptions' => Helper::montaOptionsSelect(Cidade::all()),
+                'diaPagamentoOptions' => Helper::getDiaPagamento(), 
                 'situacaoOptions' => Helper::montaOptionsSelect(Situacao::all()),
                 'turmaOptions' => Helper::montaOptionsSelect(Turma::all())            
             ]
@@ -62,11 +73,13 @@ class AlunosController extends Controller {
         return view( 
             'admin.alunos.edit',
             [
+                'helper' => Helper::class,
                 'registro' => Aluno::find($aluno), 
                 'turmas' => 
                     AlunoTurma::where('aluno_id', $aluno)
                         ->pluck('turma_id'),
                 'cidadeOptions' => Helper::montaOptionsSelect(Cidade::all()),
+                'diaPagamentoOptions' => Helper::getDiaPagamento(), 
                 'situacaoOptions' => Helper::montaOptionsSelect(Situacao::all()),
                 'turmaOptions' => Helper::montaOptionsSelect(Turma::all())
             ]

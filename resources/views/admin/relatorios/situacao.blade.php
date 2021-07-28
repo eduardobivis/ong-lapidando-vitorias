@@ -8,7 +8,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header">
-            <h6 class="m-0 font-weight-bold text-primary">Relatório de Alunos Inadimplentes</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Relatório por Situação do Aluno</h6>
         </div>
         <div class="card-body">
 
@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            <form method="get" action="{{ route('relatorios.inadimplentes') }}">
+            <form method="get" action="{{ route('relatorios.situacao') }}">
 
                 <div class="form-group row">
                     <div class="col-md-4">
@@ -43,26 +43,43 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <div class="col-md-4">
+                        <label for="tipo">Situações</label> 
+                        <select name="situacoes[]" class="situacoes" multiple>
+                            @foreach($situacoesOptions as $key => $option)
+                                <option 
+                                    value="{{ $key }}" 
+                                    {{ ( array_key_exists("situacoes", $dados) && in_array( $key, $dados["situacoes"]) ) ? 'selected' : ''  }}> 
+                                    {{ $option }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <div class="col">
                         <input type="submit" class="btn btn-primary" value="Buscar" />
                     </div>
                 </div>
             </form>
 
-            @if( !empty( $registros ) )
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="tabelaEmpresas" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>Celular</th>
-                                <th>E-mail</th>
-                                <th>Turma</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            @if( $registros )
+                Total de Resultados: {{ count( $registros ) }}
+            @endif
+            <div class="table-responsive">
+                <table class="table table-bordered" id="tabelaEmpresas" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Celular</th>
+                            <th>E-mail</th>
+                            <th>Turma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if( $registros )
                             @foreach($registros as $registro)
 
                                 <tr style="{{ $registro->deleted_at ? 'color: red;' : ''  }}" >
@@ -82,11 +99,13 @@
                                     <td>{{ $registro->turmas }}</td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                        @endif
+                    </tbody>
+                </table>
+                @if( $registros )
                     {{ $registros->links() }}
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
     </div>
     

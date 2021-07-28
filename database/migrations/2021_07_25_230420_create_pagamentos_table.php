@@ -19,6 +19,7 @@ class CreatePagamentosTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('aluno_id');
             $table->date('data');
+            $table->string('observacao', 200)->nullable();
             $table->unsignedInteger('createdby_id');
             $table->unsignedInteger('updatedby_id');
             $table->softDeletes();

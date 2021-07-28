@@ -25,6 +25,8 @@ class AlunosEditRequest extends FormRequest
             'bairro' => 'required|max:100',
             'cidade_id' => 'required',
             'codigo_acesso' => 'required|max:200',
+            'dia_pagamento' => 'required',
+            'dia_pagamento.required' => 'O campo Dia de Pagamento é obrigatório',
         ];
     }
 

@@ -5,7 +5,7 @@
     use App\Http\Interfaces\RelatorioServiceInterface;
     use Illuminate\Support\Facades\DB;
 
-    class RelatorioInadimplentesService implements RelatorioServiceInterface {
+    class RelatorioSituacaoService implements RelatorioServiceInterface {
         
         public function tratarDados( Array $dados ) : Array {
 
@@ -18,6 +18,11 @@
             $dados['turmas'] = 
                 (array_key_exists('turmas', $dados) && $dados['turmas'] != '') 
                     ? (is_array( $dados['turmas'] ) ? $dados['turmas'] : [$dados['turmas']] )
+                    : false;
+
+            $dados['situacoes'] = 
+                (array_key_exists('situacoes', $dados) && $dados['situacoes'] != '') 
+                    ? (is_array( $dados['situacoes'] ) ? $dados['situacoes'] : [$dados['situacoes']] )
                     : false;
 
             return $dados;
@@ -42,6 +47,7 @@
             //Set Variables (When não aceita Index de Array)
             $log = $dadosTratados['log'];
             $turmas = $dadosTratados['turmas'];
+            $situacoes = $dadosTratados['situacoes'];
 
             //Query
             $resultado =  
@@ -58,7 +64,6 @@
                                 turmas.nome ORDER BY turmas.id SEPARATOR ', '
                             ) AS turmas"
                         ),
-                        
                     )
 
                     //Joins
@@ -70,10 +75,12 @@
                     ->when($turmas, function ($query) use ($turmas) {
                         return $query->whereIn('turmas.id', $turmas);
                     })
+                    ->when($situacoes, function ($query) use ($situacoes) {
+                        return $query->whereIn('situacoes.id', $situacoes);
+                    })
                     ->when(!$log, function ($query) use ($turmas) {
                         return $query->whereNull('alunos.deleted_at');
                     })
-                    ->where('situacoes.nome', 'Inadimplente')
                     ->groupBy("alunos.id")
 
                     //Paginação

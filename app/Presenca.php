@@ -32,14 +32,5 @@ class Presenca extends Entidade
     public function turma () {
         return $this->belongsTo(Turma::class);
     }
-
-    //Atributos Formatados
-    public function getDataFormatadoAttribute () {
-        return Helper::formataData($this->data);
-    }
-
-    public function getHorarioFormatadoAttribute () {
-        return Helper::formataHorario($this->horario);
-    }
 }
 

@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable {
     
     protected $fillable = [
-        'name', 'descricao', 'permissao', 'foto','email', 'whatsapp', 'password'
+        'name', 
+        'descricao', 
+        'permissao', 
+        'foto',
+        'email', 
+        'whatsapp', 
+        'password'
     ];
     
 }

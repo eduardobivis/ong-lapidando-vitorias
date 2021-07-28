@@ -4,7 +4,12 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <div class="table-responsive">
+            <div>
+                <a href="{{ route('atualizasituacao', 'tipo=inadimplentes') }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm mr-1">
+                    <i class="fas fa-undo-alt fa-sm text-white-50"></i> Atualizar Inadimplentes
+                </a>
+            </div>
+            <div class="table-responsive mt-4">
                 <table class="table table-bordered display" id="tabelaEmpresas" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -23,8 +28,8 @@
                             <tr>
                                 <td>{{ $entidade->id }}</td>
                                 <td>{{ $entidade->nome }}</td>
-                                <td>{{ $entidade->cpfFormatado }}</td>
-                                <td>{{ $entidade->celularFormatado }}</td>
+                                <td>{{ Helper::formataCPF( $entidade->cpf ) }}</td>
+                                <td>{{ Helper::formataCelular( $entidade->celular ) }}</td>
                                 <td>{{ $entidade->email }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('alunos.show', $entidade->id) }}">
@@ -48,6 +53,8 @@
                     </tbody>
                 </table>
             </div>
+
+            
         </div>
     </div>
     

@@ -20,6 +20,10 @@
                     : date_create_from_format('Y-m-d', $data)->format('d/m/Y');
         }
 
+        public static function formataDataIn($data) {
+            return date_create_from_format('d/m/Y', $data)->format('Y-m-d');
+        }
+
         public static function formataHorario($horario, $timestamp = false) {
             return 
                 ($timestamp)
@@ -59,6 +63,15 @@
             $options  = array();
             foreach($registros as $registro) $options[$registro->id] = $registro->nome;
             return $options;
+        }
+
+        public static function getDiaPagamento() {
+            $dias = [];
+            for( $i=1; $i <=31; $i++) {
+                $dia = ( $i < 10 ) ? '0'.$i : (String) $i;
+                $dias[$dia] = $dia;
+            }  
+            return $dias;
         }
 
         public static function removeAll( String $string, Array $conditions ) : String {

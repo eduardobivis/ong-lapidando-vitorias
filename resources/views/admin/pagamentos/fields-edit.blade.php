@@ -8,13 +8,10 @@
     <div class="col">
         {!! Form::text('data', Helper::formataData( $registro->data ), ['placeholder'=>'Data', 'class' => 'form-control data', 'autocomplete' => 'off']) !!}
     </div>
-    <div class="col">
-        {!! Form::text('horario', Helper::formataHorario( $registro->horario ), ['placeholder'=>'Horário', 'class' => 'form-control horario', 'autocomplete' => 'off']) !!}
-    </div>
 </div>
 <div class='form-group row'>
     <div class="col">
-        {!! Form::text('justificativa', null, ['placeholder'=>'Justificativa', 'class' => 'form-control', 'maxlength' => '200']) !!}
+        {!! Form::text('observacao', null, ['placeholder'=>'Observação', 'class' => 'form-control', 'maxlength' => '200']) !!}
     </div>
 </div>
 

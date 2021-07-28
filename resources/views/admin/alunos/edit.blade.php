@@ -1,6 +1,7 @@
 @extends('layouts.admin.main')
 
 @section('css')
+    <link href="{{ asset('css/ext_libs/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ext_libs/select2.min.css') }}" rel="stylesheet">
 @endsection 
 
@@ -29,6 +30,9 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('js/ext_libs/popper.min.js') }}"></script>
+    <script src="{{ asset('js/ext_libs/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/ext_libs/jquery-validate-dateBR.js') }}"></script>
     <script src="{{ asset('js/ext_libs/select2.min.js') }}"></script>
     <script src="{{ asset('js/ext_libs/jquery-validate-cpf.js') }}"></script>
     <script src="{{ asset('js/admin/alunos/edit.js') }}"></script>

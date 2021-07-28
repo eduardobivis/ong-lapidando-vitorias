@@ -2,13 +2,12 @@
 
 @section('css')
     <link href="{{ asset('css/ext_libs/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/ext_libs/select2.min.css') }}" rel="stylesheet">
-@endsection 
+@endsection
 
 @section('conteudo')
 
     <!-- Page Heading -->
-    <p class="mb-4">Inserir um novo Aluno</p>
+    <p class="mb-4">Inserir uma novo Pagamento</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -20,8 +19,8 @@
                 </div>
             @endif
 
-            {!! Form::open(['route' => 'alunos.store', 'method' => 'post', 'id' => 'create']) !!}
-                @include('admin.alunos.fields-create')
+            {!! Form::open(['route' => 'pagamentos.store', 'method' => 'post', 'id' => 'create']) !!}
+                @include('admin.pagamentos.fields-create')
             {!! Form::close() !!}
             
         </div>
@@ -30,10 +29,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/ext_libs/popper.min.js') }}"></script>
     <script src="{{ asset('js/ext_libs/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('js/ext_libs/jquery-validate-dateBR.js') }}"></script>
-    <script src="{{ asset('js/ext_libs/select2.min.js') }}"></script>
-    <script src="{{ asset('js/ext_libs/jquery-validate-cpf.js') }}"></script>
-    <script src="{{ asset('js/admin/alunos/create.js') }}"></script>
-@endsection 
+    <script src="{{ asset('js/admin/pagamentos/create.js') }}"></script>
+@endsection

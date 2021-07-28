@@ -64,14 +64,16 @@
 
                             @switch($modulo)
 
-                                @case('user')
-                                    <i class="fas fa-fw fa-users mr-1"></i>
-                                    {{ $registro->nome ?? 'User' }} 
-                                    @break
+                                
 
                                 @case('alunos')
                                     <i class="fas fa-users"></i>
                                     {{ $registro->nome ?? 'Alunos' }} 
+                                    @break
+
+                                @case('pagamentos')
+                                    <i class="fas fa-dollar-sign"></i>                                    
+                                    Pagamentos
                                     @break
 
                                 @case('presencas')
@@ -79,14 +81,19 @@
                                     Presença
                                     @break
 
+                                @case('relatorios')
+                                    <i class="fas fa-chart-bar"></i>                                    
+                                    Relatórios
+                                    @break
+
                                 @case('turmas')
                                     <i class="fas fa-chalkboard-teacher"></i>
                                     Turmas
                                     @break
 
-                                @case('relatorios')
-                                    <i class="fas fa-chart-bar"></i>                                    
-                                    Relatórios
+                                @case('user')
+                                    <i class="fas fa-fw fa-users mr-1"></i>
+                                    {{ $registro->nome ?? 'User' }} 
                                     @break
 
                             @endswitch
@@ -94,40 +101,31 @@
                         </h1>
 
                         <!-- Botões -->
-                        <div class="float-right">
+                        <div class="float-right">                           
 
-                            <!-- Presenças possuem um botão especial para voltar ao Aluno -->
-                            @if($modulo == 'presencas')
-                                <button class="voltar d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                    <i class="fas fa-undo-alt fa-sm text-white-50"></i> Voltar
-                                </button>
+                            <!-- Turmas e Módulos não possuem Botões -->
+                            @if($modulo != 'turmas' && $modulo != 'relatorios' && $modulo !== 'presencas' && $modulo !== 'pagamentos')
+
+                                @if( $view == 'show' || $view == 'edit' || $view == 'create')
+                                    <a href="{{ route($modulo.'.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm">
+                                        <i class="fas fa-list fa-sm text-white-50"></i> Listar Registros
+                                    </a>
+                                @endif
                             
-                            @else
-
-                                <!-- Turmas e Módulos não possuem Botões -->
-                                @if($modulo != 'turmas' && $modulo != 'relatorios')
-
-                                    @if( $view == 'show' || $view == 'edit' || $view == 'create')
-                                        <a href="{{ route($modulo.'.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm">
-                                            <i class="fas fa-list fa-sm text-white-50"></i> Listar Registros
-                                        </a>
-                                    @endif
-                                
-                                    @if( $view == 'show')
-                                        <a href="{{ route($modulo.'.edit', $id) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                                            <i class="fas fa-pencil-alt fa-sm text-white-50"></i> Editar Registro
-                                        </a>
-                                    @endif
-                                
-                                    @if( ($view == 'index' || $view == 'edit' || $view == 'show') && $modulo != 'categoria')
-                                        <a href="{{ route($modulo.'.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                            <i class="fas fa-plus fa-sm text-white-50"></i> Novo Registro
-                                        </a>
-                                    @endif
-
+                                @if( $view == 'show')
+                                    <a href="{{ route($modulo.'.edit', $id) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                        <i class="fas fa-pencil-alt fa-sm text-white-50"></i> Editar Registro
+                                    </a>
+                                @endif
+                            
+                                @if( ($view == 'index' || $view == 'edit' || $view == 'show') && $modulo != 'categoria')
+                                    <a href="{{ route($modulo.'.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                        <i class="fas fa-plus fa-sm text-white-50"></i> Novo Registro
+                                    </a>
                                 @endif
 
                             @endif
+                            
                         </div>
                     </div>  
                     

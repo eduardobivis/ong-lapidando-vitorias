@@ -59,7 +59,7 @@ class PresencasController extends Controller {
 
     public function update(PresencaEditRequest $request, String $presencaId) {
 
-        $presenca = $this->presencaService->update( $request->all(), $presencaId );
+        $retorno = $this->presencaService->update( $request->all(), $presencaId );
         if($retorno['status']){
             return redirect()->route('alunos.show', $retorno['registro']->aluno_id);
         }

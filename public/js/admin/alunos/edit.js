@@ -18,8 +18,28 @@ $(function(){
     //Multi Select
     $( ".turmas" ).select2({ placeholder: "Turmas" });
 
+    //Tooltip
+    $( '.turma-hint' ).tooltip();
+
+    $.fn.datepicker.dates['pt-BR'] = {
+        days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+        daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+        daysMin: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+        months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+        monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        today: "Hoje"
+    };
+
+    //Data
+    $('.data').datepicker({
+        format: 'dd/mm/yyyy',
+        todayBtn: true,
+        language: "pt-BR",
+        autoclose: true
+    });
+
     //Validação Criar
-    $("#create").validate({
+    $("#edit").validate({
         rules: {
             nome: { required: true, maxlength: 100 },
             email: { required: true, email: true, maxlength: 100 },
@@ -35,8 +55,8 @@ $(function(){
             bairro: { required: true, maxlength: 100 },
             cidade_id: { required: true },
             complemento: { maxlength: 200 },
-            '2d': { required: true, maxlength: 200 },
-            rfid: { required: true, maxlength: 200 },
+            codigo_acesso: { required: true, maxlength: 200 },
+            dia_pagamento: { required: true },
         },
         messages: {
             name: {
@@ -82,15 +102,11 @@ $(function(){
             },
             cidade_id: "O campo Cidade é obrigatório",
             complemento:  "O campo Complemento não pode conter mais de 200 caracteres",
-            '2d': {
-                required: "O campo 2D é obrigatório",
-                maxlength: "O campo 2D não pode conter mais de 200 caracteres"
+            codigo_acesso: {
+                required: "O campo Código de Acesso é obrigatório",
+                maxlength: "O campo Código de Acesso não pode conter mais de 200 caracteres"
             },
-            rfid: {
-                required: "O campo RFID é obrigatório",
-                maxlength: "O campo RFID não pode conter mais de 200 caracteres"
-            },
-
+            dia_pagamento: "O campo Dia de Pagamento é obrigatório"
         },
         submitHandler: function(form) {
             form.submit();

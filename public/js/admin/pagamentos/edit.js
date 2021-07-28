@@ -2,7 +2,6 @@ $(function(){
 
     //Máscara Data e Horário
     $(".data").mask('00/00/0000');
-    $(".horario").mask('00:00', {reverse: true});
 
     $.fn.datepicker.dates['pt-BR'] = {
         days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
@@ -22,7 +21,7 @@ $(function(){
     });
 
     //Validação Criar
-    $("#create").validate({
+    $("#edit").validate({
         rules: {
             data: { required: true, dateBR: true },
             horario: { required: true, time: true },

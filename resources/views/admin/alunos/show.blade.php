@@ -28,11 +28,11 @@
                     </tr>
                     <tr>
                         <td class="titulo_show"> Telefone </td>
-                        <td>{{ $registro->telefoneFormatado }}</td>
+                        <td>{{ Helper::formataTelefone( $registro->telefone ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show"> Celular </td>
-                        <td>{{ $registro->celularFormatado }}</td>
+                        <td>{{ Helper::formataCelular( $registro->celular ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show"> RG </td>
@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td class="titulo_show"> CPF </td>
-                        <td>{{ $registro->cpfFormatado }}</td>
+                        <td>{{ Helper::formataCPF( $registro->cpf ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show"> Turma(s) </td>
@@ -65,22 +65,34 @@
                     </tr>
                     <tr>
                         <td class="titulo_show"> Código de Acesso </td>
-                        <td>{{ $registro->{ 'codigo_acesso' } }}</td>
+                        <td>{{ $registro->codigo_acesso }}</td>
+                    </tr>
+                    <tr>
+                        <td class="titulo_show"> Dia de Pagamento </td>
+                        <td>{{ $registro->dia_pagamento }}</td>
+                    </tr>
+                    <tr>
+                        <td class="titulo_show"> 
+                            Dia de Matrícula 
+                            <i class="fas fa-question turma-hint" 
+                                title="Usada no cálculo de Inadimplentes!"></i>
+                        </td>
+                        <td>{{ Helper::formataData( $registro->data_matricula ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show">Criação</td>
                         <td>
                             por <strong>{{ $registro->createdby->name }}</strong> em 
-                            <strong>{{ $registro->createdAtDate }}</strong>
-                            às <strong>{{ $registro->createdAtTime }}
+                            <strong>{{ Helper::formataData( $registro->created_at, true ) }}</strong>
+                            às <strong>{{ Helper::formataHorario( $registro->created_at, true ) }}
                         </td>
                     </tr>
                     <tr>
                         <td class="titulo_show">Última Alteração</td>
                         <td>
                             por <strong>{{ $registro->updatedby->name }}</strong> em 
-                            <strong>{{ $registro->updatedAtDate }}</strong>
-                            às <strong>{{ $registro->updatedAtTime }}
+                            <strong>{{ Helper::formataData( $registro->updated_at, true ) }}</strong>
+                            às <strong>{{ Helper::formataHorario( $registro->updated_at, true ) }}
                         </td>
                     </tr>
                     <tr>
@@ -110,6 +122,7 @@
     <div class="card-header py-3" style="display: flex; align-items: center;justify-content: space-between;">
         <h6 class="m-0 font-weight-bold text-primary">Presenças ( Ano Corrente )</h6>
         <div class="float-right">
+        
             <a href="{{ route('presencas.create', $registro->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Novo Registro
             </a>
@@ -132,8 +145,8 @@
                 <tbody>
                     @foreach($registro->presencas as $presenca)
                         <tr>
-                            <td>{{ $presenca->dataFormatado }}</td>
-                            <td>{{ $presenca->horarioFormatado }}</td>
+                            <td>{{ Helper::formataData( $presenca->data ) }}</td>
+                            <td>{{ Helper::formataHorario( $presenca->horario ) }}</td>
                             <td>{{ $presenca->turma->nome }}</td>
                             <td class="text-center">
                                 <a href="{{ route('presencas.show', $presenca->id ) }}">
@@ -147,6 +160,63 @@
                             </td>
                             <td class="text-center">
                                 {!! Form::open(['route' => ['presencas.destroy', $presenca->id], 'method' => 'DELETE', 'class' => 'form-deletar']) !!}
+                                    {{ Form::button('<span class="fa fa-trash"></span>', 
+                                        ['type' => 'submit', 'style' => 'color:red', 'class'=>"delete-button"] )  
+                                    }}                        
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>    
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3" style="display: flex; align-items: center;justify-content: space-between;">
+        <h6 class="m-0 font-weight-bold text-primary">Pagamentos</h6>
+        <div class="float-right">
+            <a href="{{ route('pagamentos.create', $registro->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Novo Registro
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered display" id="tabelaEmpresas" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Observação</th>
+                        <th>Criação</th>
+                        <th>Última Alteração</th>
+                        <th class="icone-index">Editar</th>
+                        <th class="icone-index">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($registro->pagamentos as $pagamento)
+                        <tr>
+                            <td style="width: 12%;">{{ Helper::formataData( $pagamento->data ) }}</td>
+                            <td>
+                                por <strong>{{ $pagamento->createdby->name }}</strong> em 
+                                <strong>{{ Helper::formataData( $pagamento->created_at, true ) }}</strong>
+                                às <strong>{{ Helper::formataHorario( $pagamento->created_at, true ) }}
+                            </td>
+                            <td>
+                                por <strong>{{ $pagamento->updatedby->name }}</strong> em 
+                                <strong>{{ Helper::formataData( $registro->updated_at, true ) }}</strong>
+                                às <strong>{{ Helper::formataHorario( $pagamento->updated_at, true )}}
+                            </td>
+                            <td style="width: 20%">{{ $pagamento->observacao }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('pagamentos.edit', $pagamento->id) }}">     
+                                    <span class="fa fa-pencil-alt"></span>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                {!! Form::open(['route' => ['pagamentos.destroy', $pagamento->id], 'method' => 'DELETE', 'class' => 'form-deletar']) !!}
                                     {{ Form::button('<span class="fa fa-trash"></span>', 
                                         ['type' => 'submit', 'style' => 'color:red', 'class'=>"delete-button"] )  
                                     }}                        

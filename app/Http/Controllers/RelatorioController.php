@@ -6,21 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Helper;
 
+use App\Situacao;
 use App\Turma;
 
-use App\Http\Services\RelatorioInadimplentesService;
+use App\Http\Services\RelatorioSituacaoService;
 use App\Http\Services\RelatorioPresencasService;
 
 class RelatorioController extends Controller { 
 
-    private $relatorioInadimplentesService;
+    private $relatorioSituacaoService;
     private $relatorioPresencasService;
 
     public function __construct( 
-        RelatorioInadimplentesService $relatorioInadimplentesService,
+        RelatorioSituacaoService $relatorioSituacaoService,
         RelatorioPresencasService $relatorioPresencasService
     ) {
-        $this->relatorioInadimplentesService = $relatorioInadimplentesService;
+        $this->relatorioSituacaoService = $relatorioSituacaoService;
         $this->relatorioPresencasService = $relatorioPresencasService;
     }
     
@@ -32,22 +33,23 @@ class RelatorioController extends Controller {
     //Filtra o Relaŕio
     public function resultado(Request $request) {
 
-        $tipo = explode( "/", URL::current())[4];     
+        $tipo = explode( "/", URL::current())[4];   
         switch( $tipo ) {
-            case 'inadimplentes' :
+            case 'situacao' :
                 $retorno = 
-                    $this->relatorioInadimplentesService
+                    $this->relatorioSituacaoService
                         ->buscaResultados( $request->all() );
                 return view(
-                    'admin.relatorios.inadimplentes', 
+                    'admin.relatorios.situacao', 
                     [
                         'dados' => $request->all(),
                         'helper' => Helper::class,
                         'turmaOptions' => Helper::montaOptionsSelect(Turma::all()),
+                        'situacoesOptions' => Helper::montaOptionsSelect(Situacao::all()),
                         'registros' => 
                             ($retorno['status'])
                                 ? $retorno['resultado']->appends($request->all()) 
-                                : $retorno['resultado']
+                                : false
                     ]
                 )->withErrors($retorno['errors']);
             case 'presencas' :
@@ -63,7 +65,7 @@ class RelatorioController extends Controller {
                         'registros' => 
                             ($retorno['status'])
                                 ? $retorno['resultado']->appends($request->all()) 
-                                : $retorno['resultado']
+                                : false
                     ]
                 )->withErrors($retorno['errors']);
         }

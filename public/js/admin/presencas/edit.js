@@ -22,7 +22,7 @@ $(function(){
     });
 
     //Validação Criar
-    $("#create").validate({
+    $("#edit").validate({
         rules: {
             data: { required: true, dateBR: true },
             horario: { required: true, time: true },
@@ -33,11 +33,11 @@ $(function(){
                 required: "O campo Data é obrigatório",
                 dateBR: "Data Inválida"
             },
-            data: {
+            horario: {
                 required: "O campo Horário é obrigatório",
                 time: "Horário Inválido"
             },
-            justificativa: "O campo Observação não pode conter mais de 200 caracteres"
+            justificativa: "O campo Justificativa não pode conter mais de 200 caracteres"
         },
         submitHandler: function(form) {
             form.submit();

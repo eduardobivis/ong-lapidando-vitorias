@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Helper;
+
 use App\Turma;
 
 use App\Http\Requests\TurmasEditRequest;
@@ -20,7 +22,10 @@ class TurmasController extends Controller {
     public function edit() {
         return view( 
             'admin.turmas.edit',
-            ['registros' => Turma::all()]
+            [
+                'registros' => Turma::all(),
+                'helper' => Helper::class
+            ]
         );;
     }
 
