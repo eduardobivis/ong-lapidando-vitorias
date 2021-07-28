@@ -13,7 +13,7 @@
             return date('H:i');
         }
 
-        public static function formataData($data, $timestamp = false) {
+        public static function formataDataOut($data, $timestamp = false) {
             return 
                 ($timestamp)
                     ? date_create_from_format('Y-m-d H:i:s', $data)->format('d/m/Y')

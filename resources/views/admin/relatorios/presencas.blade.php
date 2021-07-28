@@ -112,10 +112,10 @@
                                     <td style="{{ $registro->presencas_deleted_at ? 'color: red;' : ''  }}">
                                         @if( !$registro->presencas_deleted_at )
                                             <a href="{{ route('presencas.show', $registro->presenca_id) }}">     
-                                                {{ Helper::formataData( $registro->data ) }}
+                                                {{ Helper::formataDataOut( $registro->data ) }}
                                             </a>
                                         @else
-                                            {{ Helper::formataData( $registro->data ) }}
+                                            {{ Helper::formataDataOut( $registro->data ) }}
                                         @endif
                                     </td>
                                     <td>{{ Helper::formataHorario( $registro->horario ) }}</td> 

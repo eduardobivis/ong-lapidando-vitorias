@@ -6,7 +6,7 @@
         <input style="display: inline-block" type="text" class="form-control" value="Aluno: {{ $registro->aluno->nome }}" readonly>
     </div>
     <div class="col">
-        {!! Form::text('data', Helper::formataData( $registro->data ), ['placeholder'=>'Data', 'class' => 'form-control data', 'autocomplete' => 'off']) !!}
+        {!! Form::text('data', Helper::formataDataOut( $registro->data ), ['placeholder'=>'Data', 'class' => 'form-control data', 'autocomplete' => 'off']) !!}
     </div>
     <div class="col">
         {!! Form::text('horario', Helper::formataHorario( $registro->horario ), ['placeholder'=>'Horário', 'class' => 'form-control horario', 'autocomplete' => 'off']) !!}

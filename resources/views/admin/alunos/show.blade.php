@@ -77,13 +77,13 @@
                             <i class="fas fa-question turma-hint" 
                                 title="Usada no cálculo de Inadimplentes!"></i>
                         </td>
-                        <td>{{ Helper::formataData( $registro->data_matricula ) }}</td>
+                        <td>{{ Helper::formataDataOut( $registro->data_matricula ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show">Criação</td>
                         <td>
                             por <strong>{{ $registro->createdby->name }}</strong> em 
-                            <strong>{{ Helper::formataData( $registro->created_at, true ) }}</strong>
+                            <strong>{{ Helper::formataDataOut( $registro->created_at, true ) }}</strong>
                             às <strong>{{ Helper::formataHorario( $registro->created_at, true ) }}
                         </td>
                     </tr>
@@ -91,7 +91,7 @@
                         <td class="titulo_show">Última Alteração</td>
                         <td>
                             por <strong>{{ $registro->updatedby->name }}</strong> em 
-                            <strong>{{ Helper::formataData( $registro->updated_at, true ) }}</strong>
+                            <strong>{{ Helper::formataDataOut( $registro->updated_at, true ) }}</strong>
                             às <strong>{{ Helper::formataHorario( $registro->updated_at, true ) }}
                         </td>
                     </tr>
@@ -145,7 +145,7 @@
                 <tbody>
                     @foreach($registro->presencas as $presenca)
                         <tr>
-                            <td>{{ Helper::formataData( $presenca->data ) }}</td>
+                            <td>{{ Helper::formataDataOut( $presenca->data ) }}</td>
                             <td>{{ Helper::formataHorario( $presenca->horario ) }}</td>
                             <td>{{ $presenca->turma->nome }}</td>
                             <td class="text-center">
@@ -198,15 +198,15 @@
                 <tbody>
                     @foreach($registro->pagamentos as $pagamento)
                         <tr>
-                            <td style="width: 12%;">{{ Helper::formataData( $pagamento->data ) }}</td>
+                            <td style="width: 12%;">{{ Helper::formataDataOut( $pagamento->data ) }}</td>
                             <td>
                                 por <strong>{{ $pagamento->createdby->name }}</strong> em 
-                                <strong>{{ Helper::formataData( $pagamento->created_at, true ) }}</strong>
+                                <strong>{{ Helper::formataDataOut( $pagamento->created_at, true ) }}</strong>
                                 às <strong>{{ Helper::formataHorario( $pagamento->created_at, true ) }}
                             </td>
                             <td>
                                 por <strong>{{ $pagamento->updatedby->name }}</strong> em 
-                                <strong>{{ Helper::formataData( $registro->updated_at, true ) }}</strong>
+                                <strong>{{ Helper::formataDataOut( $registro->updated_at, true ) }}</strong>
                                 às <strong>{{ Helper::formataHorario( $pagamento->updated_at, true )}}
                             </td>
                             <td style="width: 20%">{{ $pagamento->observacao }}</td>

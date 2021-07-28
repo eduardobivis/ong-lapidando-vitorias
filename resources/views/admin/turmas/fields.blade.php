@@ -14,7 +14,7 @@
     </div>
     <div class="col-5">
         Última Edição por <strong>{{ $registro->updatedby->name }}</strong> em 
-        <strong>{{ Helper::formataData( $registro->updated_at, true ) }}</strong>
+        <strong>{{ Helper::formataDataOut( $registro->updated_at, true ) }}</strong>
         às <strong>{{ Helper::formataHorario( $registro->updated_at, true ) }}</strong>
     </div>
     {!! Form::submit('Editar', ['class' => 'btn btn-primary float-right']) !!}

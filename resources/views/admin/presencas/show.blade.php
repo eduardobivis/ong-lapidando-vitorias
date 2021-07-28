@@ -16,7 +16,7 @@
                 <tbody>
                     <tr>
                         <td class="titulo_show"> Data</td>
-                        <td>{{ Helper::formataData( $registro->data ) }}</td>
+                        <td>{{ Helper::formataDataOut( $registro->data ) }}</td>
                     </tr>
                     <tr>
                         <td class="titulo_show"> Horário </td>

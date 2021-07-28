@@ -19,9 +19,4 @@ class Pagamento extends Entidade {
     public function aluno () {
         return $this->belongsTo(Aluno::class);
     }
-
-    //Atributos Formatados
-    public function getDataFormatadoAttribute () {
-        return Helper::formataData($this->data);
-    }
 }

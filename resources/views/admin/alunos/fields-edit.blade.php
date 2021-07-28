@@ -101,7 +101,7 @@
         {!! Form::select('dia_pagamento', $diaPagamentoOptions, null, ['class' => 'form-control', 'placeholder' => 'Dia do Pagamento']) !!}        
     </div>
     <div class="col">
-        {!! Form::text('data_matricula', Helper::formataData( $registro->data_matricula ), ['placeholder'=>'Data da Matrícula', 'class' => 'form-control col-md-11 data', 'autocomplete' => 'off', 'style' => 'display: inline-block;']) !!}
+        {!! Form::text('data_matricula', Helper::formataDataOut( $registro->data_matricula ), ['placeholder'=>'Data da Matrícula', 'class' => 'form-control col-md-11 data', 'autocomplete' => 'off', 'style' => 'display: inline-block;']) !!}
         <td class="titulo_show">  
             <i class="fas fa-question turma-hint" 
                 title="Usada no cálculo de Inadimplentes!"></i>
